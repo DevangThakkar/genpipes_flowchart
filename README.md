@@ -38,9 +38,9 @@ usage: flowchart.py [-h] --steps STEPS --h_file H_FILE [--bam BAM]
 
 Creating flowcharts for GenPipe pipeline executions
 
-optional arguments:
-  -h, --help       show this help message and exit
-  --steps STEPS    step range e.g. "1-5", "3,6,7", "2,4-8"
-  --h_file H_FILE  path to hierarchy file for pipeline
-  --bam BAM        mention if SAM/BAM data is present in READSET
-  --fastq FASTQ    mention if FASTQ is present in READSET
+optional arguments: <br/>
+&nbsp;&nbsp;-h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show this help message and exit <br/>
+&nbsp;&nbsp;--steps STEPS&nbsp;&nbsp;&nbsp;&nbsp;step range e.g. "1-5", "3,6,7", "2,4-8" <br/>
+&nbsp;&nbsp;--h_file H_FILE&nbsp;&nbsp;&nbsp;path to hierarchy file for pipeline <br/>
+&nbsp;&nbsp;--bam BAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mention if SAM/BAM data is present in READSET <br/>
+&nbsp;&nbsp;--fastq FASTQ&nbsp;&nbsp;&nbsp;&nbsp;mention if FASTQ is present in READSET <br/>
