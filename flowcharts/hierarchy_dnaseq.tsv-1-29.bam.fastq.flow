@@ -2,10 +2,12 @@
 digraph {
 	node [shape=rectangle]
 	edge [arrowhead=normal]
-	DATA [label="READSET DATA"]
+	BAM [label=BAM]
+	FASTQ [label=FASTQ]
 	1 [label="1:picard_sam_to_fastq"]
 	2 [label="2:trimmomatic"]
 	3 [label="3:merge_trimmomatic_stats"]
+	4 [label="4:bwa_mem_picard_sort_sam"]
 	5 [label="5:picard_merge_sam_files"]
 	6 [label="6:gatk_indel_realigner"]
 	7 [label="7:merge_realigned"]
@@ -31,10 +33,11 @@ digraph {
 	27 [label="27:haplotype_caller_dbnsfp_annotation"]
 	28 [label="28:haplotype_caller_metrics_vcf_stats"]
 	29 [label="29:haplotype_caller_metrics_snv_graph_metrics"]
-	DATA -> 1
-	DATA -> 2
+	BAM -> 1
+	FASTQ -> 2
 	2 -> 3
-	DATA -> 5
+	3 -> 4
+	4 -> 5
 	5 -> 6
 	6 -> 7
 	6 -> 8

@@ -2,28 +2,21 @@
 digraph {
 	node [shape=rectangle]
 	edge [arrowhead=normal]
-	DATA [label="READSET DATA"]
+	BAM [label=BAM]
+	FASTQ [label=FASTQ]
 	5 [label="5:picard_merge_sam_files"]
 	6 [label="6:gatk_indel_realigner"]
 	7 [label="7:merge_realigned"]
 	8 [label="8:fix_mate_by_coordinate"]
-	9 [label="9:picard_mark_duplicates"]
-	10 [label="10:recalibration"]
 	17 [label="17:gatk_haplotype_caller"]
 	18 [label="18:merge_and_call_individual_gvcf"]
 	19 [label="19:combine_gvcf"]
 	20 [label="20:merge_and_call_combined_gvcf"]
-	DATA -> 5
+	BAM -> 5
 	5 -> 6
 	6 -> 7
 	6 -> 8
-	5 -> 9
-	6 -> 9
-	8 -> 9
-	9 -> 10
 	5 -> 17
-	9 -> 17
-	10 -> 17
 	17 -> 18
 	18 -> 19
 	19 -> 20

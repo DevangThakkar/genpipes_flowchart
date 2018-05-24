@@ -21,11 +21,11 @@
 #
 # Predecessor(s)			Node
 #
-DATA						1:picard_sam_to_fastq
-DATA,1						2:trimmomatic
+BAM							1:picard_sam_to_fastq
+FASTQ,1						2:trimmomatic
 2							3:merge_trimmomatic_stats
-3,DATA,1					4:bwa_mem_picard_sort_sam
-4,DATA						5:picard_merge_sam_files
+3,FASTQ,1					4:bwa_mem_picard_sort_sam
+4,BAM						5:picard_merge_sam_files
 5							6:gatk_indel_realigner
 6							7:merge_realigned
 6							8:fix_mate_by_coordinate
