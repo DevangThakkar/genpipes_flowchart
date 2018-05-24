@@ -18,15 +18,17 @@ Notes:
 
 ## Sample from hierarchy_dnaseq.tsv, the linkage document for the dnaseq pipeline:
 
-BAM							1:picard_sam_to_fastq				(1) uses BAM data
-FASTQ,1						2:trimmomatic						(2) uses FASTQ data if available, else (1)
-2							3:merge_trimmomatic_stats			(3) uses (2)
-3,FASTQ,1					4:bwa_mem_picard_sort_sam			(4) uses (3) if available, else FASTQ if available, else (1)
-4,BAM						5:picard_merge_sam_files			(5) uses (4) if available, else BAM
-5							6:gatk_indel_realigner				(6) uses (5)
-6							7:merge_realigned					(7) uses (6)
-6							8:fix_mate_by_coordinate			(8) uses (6)
-5+6+8						9:picard_mark_duplicates			(9) uses as many of (5), (6), and (8) as available
+| Predecessor			|	Node							| Explanation		|
+|	----------			|	----------						|	----------		|
+| BAM					|	1:picard_sam_to_fastq			|	(1) uses BAM data	|
+| FASTQ,1				|	2:trimmomatic					|	(2) uses FASTQ data if available, else (1)	|
+| 2						|	3:merge_trimmomatic_stats		|	(3) uses (2)	|
+| 3,FASTQ,1				|	4:bwa_mem_picard_sort_sam		|	(4) uses (3) if available, else FASTQ if available, else (1)	|
+| 4,BAM					|	5:picard_merge_sam_files		|	(5) uses (4) if available, else BAM	|
+| 5						|	6:gatk_indel_realigner			|	(6) uses (5)	|
+| 6						|	7:merge_realigned				|	(7) uses (6)	|
+| 6						|	8:fix_mate_by_coordinate		|	(8) uses (6)	|
+| 5+6+8					|	9:picard_mark_duplicates		|	(9) uses as many of (5), (6), and (8) as available	|
 
 
 ## Usage:
