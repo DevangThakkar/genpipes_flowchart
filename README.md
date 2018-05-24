@@ -44,3 +44,9 @@ optional arguments: <br/>
 &nbsp;&nbsp;--h_file H_FILE&nbsp;&nbsp;&nbsp;path to hierarchy file for pipeline <br/>
 &nbsp;&nbsp;--bam BAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mention if SAM/BAM data is present in READSET <br/>
 &nbsp;&nbsp;--fastq FASTQ&nbsp;&nbsp;&nbsp;&nbsp;mention if FASTQ is present in READSET <br/>
+
+## Requirements:
+
+* Graphviz
+
+`pip install graphviz`
