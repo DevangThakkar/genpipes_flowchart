@@ -419,6 +419,15 @@ class FlowChart():
             print("The target file seems to be open already. Please" +
                   " close the file before proceeding.")
 
+    # function to accept and convert values for --bam and --fastq
+    def str2bool(v):
+        if v.lower() in ("yes", "true", "t", "y", "1"):
+            return True
+        elif v.lower() in ("no", "false", "f", "n", "0"):
+            return False
+        else:
+            raise argparse.ArgumentTypeError("Boolean value expected.")
+
 
 if __name__ == "__main__":
 
@@ -434,15 +443,6 @@ if __name__ == "__main__":
     parser.add_argument("--h_file", nargs=1, required=True,
                         help="path to hierarchy file for pipeline")
 
-    # function to accept and convert values for --bam and --fastq
-    def str2bool(v):
-        if v.lower() in ("yes", "true", "t", "y", "1"):
-            return True
-        elif v.lower() in ("no", "false", "f", "n", "0"):
-            return False
-        else:
-            raise argparse.ArgumentTypeError("Boolean value expected.")
-
     # add optional argument bam
     parser.add_argument("--bam", type=str2bool, nargs=1, default=True,
                         help="mention if SAM/BAM data is present in READSET")
@@ -454,12 +454,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # convert args to usable format
-    steps = repr(args.steps).replace("['", "").replace("']", "")
-    h_file = repr(args.h_file).replace("['", "").replace("']", "")
-    bam = repr(args.bam).replace("[", "").replace("]", "")
-    fastq = repr(args.fastq).replace("[", "").replace("]", "")
-    bam = True if bam == "True" else False
-    fastq = True if fastq == "True" else False
+    steps = (args.steps[0]).replace("'", "")
+    h_file = (args.h_file[0]).replace("'", "")
 
     # start the program logic
-    FlowChart(steps, h_file, bam, fastq)
+    FlowChart(steps, h_file, args.bam[0], args.fastq[0])
