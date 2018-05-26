@@ -292,6 +292,9 @@ class FlowChart():
                 if not self.if_bam and self.if_fastq:
                     dot.render(dir_name + self.hierarchy_file + "-" +
                                self.steps + ".fastq.error")
+
+                print("Error: some nodes don't have a source.")
+
             except Exception as inst:
 
                 # raise exception if file is open and can not be modified
@@ -414,19 +417,12 @@ class FlowChart():
                 dot.render(dir_name + self.hierarchy_file + "-" + self.steps +
                            ".fastq.flow")
 
+            print("Flowchart saved successfully.")
+
         except Exception as inst:
             # raise exception if file is open and can not be modified
             print("The target file seems to be open already. Please" +
                   " close the file before proceeding.")
-
-    # function to accept and convert values for --bam and --fastq
-    def str2bool(v):
-        if v.lower() in ("yes", "true", "t", "y", "1"):
-            return True
-        elif v.lower() in ("no", "false", "f", "n", "0"):
-            return False
-        else:
-            raise argparse.ArgumentTypeError("Boolean value expected.")
 
 
 if __name__ == "__main__":
@@ -443,6 +439,15 @@ if __name__ == "__main__":
     parser.add_argument("--h_file", nargs=1, required=True,
                         help="path to hierarchy file for pipeline")
 
+    # function to accept and convert values for --bam and --fastq
+    def str2bool(v):
+        if v.lower() in ("yes", "true", "t", "y", "1"):
+            return True
+        elif v.lower() in ("no", "false", "f", "n", "0"):
+            return False
+        else:
+            raise argparse.ArgumentTypeError("Boolean value expected.")
+
     # add optional argument bam
     parser.add_argument("--bam", type=str2bool, nargs=1, default=True,
                         help="mention if SAM/BAM data is present in READSET")
@@ -458,4 +463,4 @@ if __name__ == "__main__":
     h_file = (args.h_file[0]).replace("'", "")
 
     # start the program logic
-    FlowChart(steps, h_file, args.bam[0], args.fastq[0])
+    FlowChart(steps, h_file, args.bam, args.fastq)
